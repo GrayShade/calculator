@@ -6,25 +6,41 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+background: #E6DADA;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #274046, #E6DADA);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #274046, #E6DADA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    
+    
+    
+
 }
 
 #header, #footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #001f3f;
 }
 
 #header {
-    /* border: 1px solid black; */
-    /* padding: 2% 0%; */
+    color: #FFFFFF;
     height: 10%;
     width: 100%;
-    /* flex-grow: 1; */
+
+}
+
+#header span {
+    font-family: system-ui;
+    font-style: italic;
+    font-size: 40px;
 }
 
 #container {
     background-color: #f5f5f5;
     display: flex;
     flex-direction: column;
-    border: 2px solid #AAAAAA;
+    border: 2px solid black;
     margin: 1% 0% 5%;
     width: 20%;
     min-width: 20%;
@@ -35,16 +51,14 @@ body {
 }
 
 #footer {
-    /* border: 1px solid black; */
-    /* padding: 2% 0%; */
+
     height: 5%;
     width: 100%;
-    /* flex-grow: 1; */
+
 }
 
 #calScreen {
     background-color: #585d58;
-    /* border: 1px solid black; */
     height: 20%;
     margin-bottom: 1%;
     box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 16px;
@@ -92,28 +106,23 @@ body {
 }
 
 #lowerBarBtns {
-    /* border: 1px solid black; */
+
     height: 85%;
     margin: 2px 2px 3px 2px;
-    /* margin-left: 2px; */
+
     display: flex;
-    /* margin-bottom: 3%; */
+
     border-radius: 10px 10px 10px 10px;
     box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 16px;
 }
-/* #lowerBarBtns button {
-    background-color: #3D9970;
-} */
+
 
 
 #numericalBtns {
     display: flex;
     flex-direction: column;
     border: 1px solid black;
-    /* height: 15%; */
-    /* margin-bottom: 3%; */
-    /* width: 80%; */
-    /* margin: 1%; */
+
     flex-grow: 1;
     border-radius: 10px 10px 10px 10px;
     box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 16px;
@@ -122,7 +131,7 @@ body {
 
 .numericRow button {
     background-color: rgb(84 93 84); 
-    /* box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 16px; */
+
 }
 
 #equalBtn {
@@ -132,7 +141,7 @@ body {
 .numericRow {
     display: flex;
     justify-content: space-evenly;
-    /* border: 1px solid black; */
+
     height: 25%;
 }
 
@@ -150,7 +159,7 @@ body {
     background-color: #FF851B;
     margin: 3%;
     font-size: xx-large;
-    /* box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 16px; */
+
 }
 
 button {
@@ -158,20 +167,17 @@ button {
     font-style: italic;
     flex-grow: 1;
     margin: 1px 1px;
-    /* font-size: x-large; */
-    /* border-radius: 10px 10px 10px 10px; */
-    /* background-color: rgb(84 93 84);  */
-    border: none;
+    /* border: none; */
     color: white;
-    /* padding: 20px; */
+
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    /* margin: 4px 2px; */
+
     border-radius: 10px;
     min-width: 0;
-    /* flex-shrink: 1; */
+
 }
 
 
