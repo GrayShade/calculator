@@ -1,0 +1,178 @@
+body {
+    height: 100vh;
+    margin: 0px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#header, #footer {
+    background-color: #001f3f;
+}
+
+#header {
+    /* border: 1px solid black; */
+    /* padding: 2% 0%; */
+    height: 10%;
+    width: 100%;
+    /* flex-grow: 1; */
+}
+
+#container {
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #AAAAAA;
+    margin: 1% 0% 5%;
+    width: 20%;
+    min-width: 20%;
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 16px;
+}
+
+#footer {
+    /* border: 1px solid black; */
+    /* padding: 2% 0%; */
+    height: 5%;
+    width: 100%;
+    /* flex-grow: 1; */
+}
+
+#calScreen {
+    background-color: #585d58;
+    /* border: 1px solid black; */
+    height: 20%;
+    margin-bottom: 1%;
+    box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 16px;
+}
+
+
+#calButtons {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    /* height: 15%; */
+    flex-grow: 1;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 16px;
+}
+
+#upperBarBtns button, .numericRow button, #rightBarBtns button {
+    font-size: x-large;
+    box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 16px;
+} 
+
+#upperBarBtns {
+    display: flex;
+    border: 1px solid black;
+    height: 20%;
+    margin: 1px;
+    margin-bottom: 1%;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 16px;
+
+}
+
+
+#acBtn {
+    background-color: #FF4136;
+    flex-grow: 4;
+}
+#cBtn, #modulusBtn {
+    background-color: #FF851B;
+    flex-grow: 2;
+}
+
+#onBtn {
+    background-color: #0074D9;
+}
+
+#lowerBarBtns {
+    /* border: 1px solid black; */
+    height: 85%;
+    margin: 2px 2px 3px 2px;
+    /* margin-left: 2px; */
+    display: flex;
+    /* margin-bottom: 3%; */
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 16px;
+}
+/* #lowerBarBtns button {
+    background-color: #3D9970;
+} */
+
+
+#numericalBtns {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    /* height: 15%; */
+    /* margin-bottom: 3%; */
+    /* width: 80%; */
+    /* margin: 1%; */
+    flex-grow: 1;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 16px;
+    
+}
+
+.numericRow button {
+    background-color: rgb(84 93 84); 
+    /* box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 16px; */
+}
+
+#equalBtn {
+    background-color: #3D9970;
+}
+
+.numericRow {
+    display: flex;
+    justify-content: space-evenly;
+    /* border: 1px solid black; */
+    height: 25%;
+}
+
+#rightBarBtns {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    border: 1px solid black;
+    margin: 1%;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 16px;
+}
+
+#rightBarBtns button {
+    background-color: #FF851B;
+    margin: 3%;
+    font-size: xx-large;
+    /* box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 16px; */
+}
+
+button {
+    font-family: serif;
+    font-style: italic;
+    flex-grow: 1;
+    margin: 1px 1px;
+    /* font-size: x-large; */
+    /* border-radius: 10px 10px 10px 10px; */
+    /* background-color: rgb(84 93 84);  */
+    border: none;
+    color: white;
+    /* padding: 20px; */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    /* margin: 4px 2px; */
+    border-radius: 10px;
+    min-width: 0;
+    /* flex-shrink: 1; */
+}
+
+
+
