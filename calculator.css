@@ -166,7 +166,7 @@ button {
     font-family: serif;
     font-style: italic;
     flex-grow: 1;
-    margin: 1px 1px;
+    margin: 1px;
     /* border: none; */
     color: white;
 
