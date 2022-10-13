@@ -6,17 +6,16 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-background: #E6DADA;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #274046, #E6DADA);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #274046, #E6DADA); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-    
-    
-    
-
+    background: #E6DADA;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #274046, #E6DADA);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #274046, #E6DADA);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-#header, #footer {
+#header,
+#footer {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -58,12 +57,50 @@ background: linear-gradient(to right, #274046, #E6DADA); /* W3C, IE 10+/ Edge, F
 }
 
 #calScreen {
+    padding: 3%;
     background-color: #585d58;
     height: 20%;
     margin-bottom: 1%;
     box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 16px;
+    display: flex;
+    flex-direction: column;
 }
 
+#calScreenUpper {
+    display: flex;
+    /* margin: 0px; */
+    height: 30%;
+    /* align-self: flex-end; */
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#calScreenUpper p {
+    font-size: x-large;
+    margin: 0px;
+}
+
+#calScreenLower {
+    flex-grow: 1;
+    align-self: flex-end;
+    font-size: 250%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    
+
+}
+#calScreenLower p {
+    font-size: 120%;
+    margin: 0px;
+}
+
+#calScreenUpper p {
+    color: #FFDC00;
+} 
+#calScreenLower p {
+    color: #01FF70;
+}
 
 #calButtons {
     display: flex;
@@ -75,10 +112,12 @@ background: linear-gradient(to right, #274046, #E6DADA); /* W3C, IE 10+/ Edge, F
     box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 16px;
 }
 
-#upperBarBtns button, .numericRow button, #rightBarBtns button {
+#upperBarBtns button,
+.numericRow button,
+#rightBarBtns button {
     font-size: x-large;
     box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 16px;
-} 
+}
 
 #upperBarBtns {
     display: flex;
@@ -96,7 +135,9 @@ background: linear-gradient(to right, #274046, #E6DADA); /* W3C, IE 10+/ Edge, F
     background-color: #FF4136;
     flex-grow: 4;
 }
-#cBtn, #modulusBtn {
+
+#cBtn,
+#modulusBtn {
     background-color: #FF851B;
     flex-grow: 2;
 }
@@ -126,11 +167,11 @@ background: linear-gradient(to right, #274046, #E6DADA); /* W3C, IE 10+/ Edge, F
     flex-grow: 1;
     border-radius: 10px 10px 10px 10px;
     box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 16px;
-    
+
 }
 
 .numericRow button {
-    background-color: rgb(84 93 84); 
+    background-color: rgb(84 93 84);
 
 }
 
@@ -179,6 +220,3 @@ button {
     min-width: 0;
 
 }
-
-
-
