@@ -137,7 +137,7 @@ body {
     flex-grow: 4;
 }
 
-#cBtn,
+#delBtn,
 #modulusBtn {
     background-color: #FF851B;
     flex-grow: 2;
