@@ -4,6 +4,26 @@ let n2 = '';
 let op = '';
 let result = '';
 
+function getKeyType(keyPressed) {
+    const upperBarKeys = ['c', 'Backspace', 'o'];
+    // using spread operator to generate an array of numbers from 0-9:
+    let numericalKeys = [...Array(10).keys()];
+    numericalKeys = numericalKeys.map(String);
+    const arithmeticKeys = ['+', '-', '*', '/', '=', '%'];
+    if (upperBarKeys.includes(keyPressed)) {
+        return "upperBarKey";
+    } else 
+    if (numericalKeys.includes(keyPressed)) {
+        return "numericalKey";
+    } else
+    if (arithmeticKeys.includes(keyPressed)) {
+        return "arithmeticKey";
+    }
+    // upperBarKeys.map(key => { if (upperBarKeys.includes(key)) return key;});
+    // numericalKeys.map(key => { if (numericalKeys.includes(key)) return key;});
+    // arithmeticBtns.map(key => { if (arithmeticBtns.includes(key)) return key;});
+}
+
 function delEntry(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph) {
     debugger;
     // if only n1 is entered or after result is calculated:
@@ -15,7 +35,7 @@ function delEntry(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph) {
         calScrnLwrParagrph.textContent = n1;
     }
     else
-    // while entering n2:
+        // while entering n2:
         if (n2 != '' && calScrnLwrParagrph.textContent == n2 && op != '') {
             n2 = n2.slice(0, -1);
             calScrnLwrParagrph.textContent = n2;
@@ -80,22 +100,27 @@ function operate(sign, n1, n2, op, buttonValue) {
 }
 
 function operateUpperBtnsInput(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph) {
-    // debugger;
+    debugger;
     // using ids bwlow not for any specific cause:
     let buttonID = e.target.id.trim();
-    if (buttonID == 'acBtn') {
+    if (buttonID == 'acBtn' || e.key == 'c') {
         allClear(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph);
     } else
-        if (buttonID == 'delBtn') {
+        if (buttonID == 'delBtn' || e.key == 'Backspace') {
             delEntry(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph)
         } else
-            if (buttonID == 'onBtn') {
+            if (buttonID == 'onBtn' || e.key == 'o') {
 
             }
 }
 
 function operateNumericInput(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph) {
-    let buttonValue = e.target.textContent.trim();
+    let buttonValue;
+    if (e.type == 'keydown') {
+        buttonValue = e.key;
+    } else {
+        buttonValue = e.target.textContent.trim();
+    }
     // debugger;
 
     if (sign == '' && n1 == '0' && op == '') {
@@ -114,12 +139,12 @@ function operateNumericInput(e, buttonParent, calScrnUprParagrph, calScrnLwrPara
         } else
             if (sign == '' && n1 != '' && n1 != '0' && op == '') {
                 if (n1.includes('.')) {
-                    if ((n1.replace('.', '').length < 9) && (buttonValue != '.')) {
+                    if ((n1.replace('.', '').length < 12) && (buttonValue != '.')) {
                         n1 += buttonValue;
                         calScrnLwrParagrph.textContent = n1;
                     }
                 } else {
-                    if (n1.length < 9) {
+                    if (n1.length < 12) {
                         n1 += buttonValue;
                         calScrnLwrParagrph.textContent = n1;
                     }
@@ -146,12 +171,12 @@ function operateNumericInput(e, buttonParent, calScrnUprParagrph, calScrnLwrPara
                         else
                             if (n1 != '' && op != '' && n2 != '') {
                                 if (n2.includes('.')) {
-                                    if ((n2.replace('.', '').length < 9) && (buttonValue != '.')) {
+                                    if ((n2.replace('.', '').length < 12) && (buttonValue != '.')) {
                                         n2 += buttonValue;
                                         calScrnLwrParagrph.textContent = n2;
                                     }
                                 } else {
-                                    if (n2.length < 9) {
+                                    if (n2.length < 12) {
                                         n2 += buttonValue;
                                         calScrnLwrParagrph.textContent = n2;
                                     }
@@ -163,7 +188,12 @@ function operateNumericInput(e, buttonParent, calScrnUprParagrph, calScrnLwrPara
 
 function operateRightBtnsInput(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph) {
     // debugger;
-    const buttonValue = e.target.textContent.trim();
+    let buttonValue;
+    if (e.type == 'keydown') {
+        buttonValue = e.key;
+    } else {
+        buttonValue = e.target.textContent.trim();
+    }
     if (sign == '' && n1 == '') {
         if (buttonValue == '-') {
             sign = buttonValue;
@@ -197,14 +227,14 @@ function operateRightBtnsInput(e, buttonParent, calScrnUprParagrph, calScrnLwrPa
 
                         if (Number.isInteger(Number(result))) { // if number is a decimal or whole
                             // debugger;
-                            if (result.length > 9) { // if result is greater than 9 digits
+                            if (result.length > 12) { // if result is greater than 12 digits
                                 result = Number(result).toExponential(2).toString();
                             }
                         }
                         else {
                             result = Number(result).toFixed(2).toString();
                             // debugger;
-                            if (result.length > 9) { // if result is greater than 9 digits
+                            if (result.length > 12) { // if result is greater than 12 digits
                                 result = Number(result).toExponential(2).toString();
                             }
                         }
@@ -249,19 +279,30 @@ function processInput(e) {
     const calScrnUprParagrph = document.getElementById('calScreenUpperPara');
     const calScrnLwrParagrph = document.getElementById('calScreenLowerPara');
     const buttonParent = e.target.parentElement;
+    let keyPressed;
+    let keyType;
     debugger;
+    if (e.type == 'keydown') {
+        keyPressed = e.key;
+        keyType = getKeyType(keyPressed);
+        debugger;
+    }
+    // if
     switch (true) {
         // == && % are assigned arithmeticBtns class in html to be handled as operators:
         case (buttonParent.id == 'upperBarBtns' && (e.target.classList[0] != 'arithmeticBtns')):
+        case keyType == 'upperBarKey':
             // debugger;
             handleUpperBtnsInput(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph);
             break;
         case buttonParent.classList.contains('numericRow') && (e.target.classList[0] != 'arithmeticBtns'):
+        case keyType == 'numericalKey':
             handleNumericBtnsInput(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph);
             // debugger;
             break;
 
         case (buttonParent.id == 'arithmeticBtns' || (e.target.classList[0] == 'arithmeticBtns')):
+        case keyType == 'arithmeticKey':
             handleRightBtnsInput(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph);
             // debugger;
             break;
