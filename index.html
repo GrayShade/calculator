@@ -15,48 +15,48 @@
     <div id="container">
         <div id="calScreen">
             <div id="calScreenUpper">
-                <p>123 + 123</p>
+                <p id = "calScreenUpperPara"></p>
             </div>
             <div id="calScreenLower">
-                <p>123123</p>
+                <p id = "calScreenLowerPara">0</p>
             </div>
         </div>
         <div id="calButtons">
             <div id="upperBarBtns">
-                <button id="acBtn">AC</button>
-                <button id="cBtn">C</button>
-                <button id="modulusBtn">%</button>
-                <button id="onBtn">On</button>
+                <button class="upperBarBtn" id="acBtn">AC</button>
+                <button class="upperBarBtn" id="cBtn">C</button>
+                <button class="arithmeticBtns" id="modulusBtn">%</button>
+                <button class="upperBarBtn" id="onBtn">On</button>
             </div>
             <div id="lowerBarBtns">
                 <div id="numericalBtns">
                     <div class="numericRow" id="numericRow1">
-                        <button>9</button>
-                        <button>8</button>
                         <button>7</button>
+                        <button>8</button>
+                        <button>9</button>
                     </div>
                     <div class="numericRow" id="numericRow2">
-                        <button>6</button>
-                        <button>5</button>
                         <button>4</button>
+                        <button>5</button>
+                        <button>6</button>
                     </div>
                     <div class="numericRow" id="numericRow3">
-                        <button>3</button>
-                        <button>2</button>
                         <button>1</button>
+                        <button>2</button>
+                        <button>3</button>
                     </div>
                     <div class="numericRow" id="numericRow4">
                         <button>0</button>
                         <!-- spaces for button equality: -->
                         <button>&nbsp.&nbsp</button> 
-                        <button id="equalBtn">=</button>
+                        <button class="arithmeticBtns" id="equalBtn">=</button>
                     </div>
                 </div>
-                <div id="rightBarBtns">
-                    <button>+</button>
-                    <button>-</button>
-                    <button>*</button>
-                    <button>/</button>
+                <div id="arithmeticBtns">
+                    <button class="arithmeticBtns">+</button>
+                    <button class="arithmeticBtns">-</button>
+                    <button class="arithmeticBtns">*</button>
+                    <button class="arithmeticBtns">/</button>
                 </div>
             </div>
 

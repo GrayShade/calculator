@@ -75,7 +75,7 @@ body {
     justify-content: flex-end;
 }
 
-#calScreenUpper p {
+#calScreenUpperPara {
     font-size: x-large;
     margin: 0px;
 }
@@ -87,17 +87,18 @@ body {
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    
 
 }
-#calScreenLower p {
+
+#calScreenLowerPara {
     font-size: 120%;
     margin: 0px;
 }
 
 #calScreenUpper p {
     color: #FFDC00;
-} 
+}
+
 #calScreenLower p {
     color: #01FF70;
 }
@@ -114,7 +115,7 @@ body {
 
 #upperBarBtns button,
 .numericRow button,
-#rightBarBtns button {
+#arithmeticBtns button {
     font-size: x-large;
     box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 16px;
 }
@@ -186,7 +187,7 @@ body {
     height: 25%;
 }
 
-#rightBarBtns {
+#arithmeticBtns {
     display: flex;
     flex-direction: column;
     width: 20%;
@@ -196,7 +197,7 @@ body {
     box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 16px;
 }
 
-#rightBarBtns button {
+#arithmeticBtns button {
     background-color: #FF851B;
     margin: 3%;
     font-size: xx-large;
