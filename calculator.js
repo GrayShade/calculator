@@ -5,23 +5,49 @@ let op = '';
 let result = '';
 
 function getKeyType(keyPressed) {
-    const upperBarKeys = ['c', 'Backspace', 'o'];
+    const upperBarKeys = ['c', 'Backspace', 's'];
     // using spread operator to generate an array of numbers from 0-9:
     let numericalKeys = [...Array(10).keys()];
     numericalKeys = numericalKeys.map(String);
-    const arithmeticKeys = ['+', '-', '*', '/', '=', '%'];
+    numericalKeys.push('.');
+    debugger;
+    const arithmeticKeys = ['+', '-', '*', '/', '=', '%', 'Enter'];
     if (upperBarKeys.includes(keyPressed)) {
         return "upperBarKey";
-    } else 
-    if (numericalKeys.includes(keyPressed)) {
-        return "numericalKey";
     } else
-    if (arithmeticKeys.includes(keyPressed)) {
-        return "arithmeticKey";
-    }
+        if (numericalKeys.includes(keyPressed)) {
+            return "numericalKey";
+        } else
+            if (arithmeticKeys.includes(keyPressed)) {
+                return "arithmeticKey";
+            }
     // upperBarKeys.map(key => { if (upperBarKeys.includes(key)) return key;});
     // numericalKeys.map(key => { if (numericalKeys.includes(key)) return key;});
     // arithmeticBtns.map(key => { if (arithmeticBtns.includes(key)) return key;});
+}
+
+function changeSign(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph) {
+    if (n1 != '0' && calScrnLwrParagrph.textContent == n1 && n2 == '') {
+        n1 = -(n1); // n1 converts to number here & from 
+        // exponential to non exponential form. So:
+        n1 = n1.toString(); // converting to string
+        if (n1.length > 12) {
+            n1 = Number(n1).toExponential().toString(); // to exponential form
+        }
+
+        calScrnLwrParagrph.textContent = n1;
+    }
+    else
+        // while entering n2:
+        if (n2 != '' && calScrnLwrParagrph.textContent == n2 && op != '') {
+            n2 = -(n2); // n1 converts to number here & from 
+            // exponential to non exponential form. So:
+            n2 = n2.toString(); // converting to string
+            if (n2.length > 12) {
+                n2 = Number(n2).toExponential().toString(); // to exponential form
+            }
+            calScrnLwrParagrph.textContent = n2;
+        }
 }
 
 function delEntry(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph) {
@@ -109,8 +135,8 @@ function operateUpperBtnsInput(e, buttonParent, calScrnUprParagrph, calScrnLwrPa
         if (buttonID == 'delBtn' || e.key == 'Backspace') {
             delEntry(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph)
         } else
-            if (buttonID == 'onBtn' || e.key == 'o') {
-
+            if (buttonID == 'signBtn' || e.key == 's') {
+                changeSign(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph)
             }
 }
 
@@ -156,7 +182,7 @@ function operateNumericInput(e, buttonParent, calScrnUprParagrph, calScrnLwrPara
                     calScrnLwrParagrph.textContent = n1;
 
                 } else
-                    if (n1 != '' && op == '=' && n2 == '') { // to cater numbers entered after << = >> sign result shown 
+                    if (n1 != '' && (op == '=' || op == 'Enter') && n2 == '') { // to cater numbers entered after << = >> sign result shown 
                         n1 = buttonValue;
                         op = '';
                         calScrnLwrParagrph.textContent = n1;
@@ -206,13 +232,13 @@ function operateRightBtnsInput(e, buttonParent, calScrnUprParagrph, calScrnLwrPa
                 calScrnLwrParagrph.textContent += buttonValue;
             }
         } else
-            if (n1 != '' && op == '' && n2 == '' && buttonValue != '=') {
+            if (n1 != '' && op == '' && n2 == '' && (buttonValue != '=' && buttonValue != 'Enter')) {
                 op = buttonValue;
                 calScrnUprParagrph.textContent = calScrnLwrParagrph.textContent + op; // does code reach here?
                 // calScrnLwrParagrph.textContent += op;
 
             } else
-                if (n1 != '' && op == '=' && n2 == '' && buttonValue != '=') { // to cater the operator pressed after equal sign result
+                if (n1 != '' && (op == '=' || op == 'Enter') && n2 == '' && (buttonValue != '=' && buttonValue != 'Enter')) { // to cater the operator pressed after equal sign result
                     op = buttonValue;
                     calScrnUprParagrph.textContent = calScrnLwrParagrph.textContent + op;
                     // calScrnLwrParagrph.textContent += op;
@@ -238,7 +264,7 @@ function operateRightBtnsInput(e, buttonParent, calScrnUprParagrph, calScrnLwrPa
                                 result = Number(result).toExponential(2).toString();
                             }
                         }
-                        if (buttonValue != '=') {
+                        if (buttonValue != '=' && buttonValue != 'Enter') {
                             // op is now last operator pressed after entering n2:
                             op = buttonValue;
                             // calScrnUprParagrph.textContent = Number(result).toFixed(2) + op;
@@ -249,7 +275,7 @@ function operateRightBtnsInput(e, buttonParent, calScrnUprParagrph, calScrnLwrPa
                             op = buttonValue;
 
                         }
-                        // debugger;
+                        debugger;
                         n1 = result;
                         n2 = '';
                         // calScrnUprParagrph.textContent = result + op;
@@ -285,23 +311,23 @@ function processInput(e) {
     if (e.type == 'keydown') {
         keyPressed = e.key;
         keyType = getKeyType(keyPressed);
-        debugger;
+        // debugger;
     }
     // if
     switch (true) {
         // == && % are assigned arithmeticBtns class in html to be handled as operators:
-        case (buttonParent.id == 'upperBarBtns' && (e.target.classList[0] != 'arithmeticBtns')):
+        case (buttonParent.id == 'upperBarBtns' && (e.target.classList[0] != 'arithmeticBtns') && e.type == 'click'):
         case keyType == 'upperBarKey':
             // debugger;
             handleUpperBtnsInput(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph);
             break;
-        case buttonParent.classList.contains('numericRow') && (e.target.classList[0] != 'arithmeticBtns'):
+        case buttonParent.classList.contains('numericRow') && (e.target.classList[0] != 'arithmeticBtns' && e.type == 'click'):
         case keyType == 'numericalKey':
             handleNumericBtnsInput(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph);
             // debugger;
             break;
 
-        case (buttonParent.id == 'arithmeticBtns' || (e.target.classList[0] == 'arithmeticBtns')):
+        case (buttonParent.id == 'arithmeticBtns' || (e.target.classList[0] == 'arithmeticBtns') && e.type == 'click'):
         case keyType == 'arithmeticKey':
             handleRightBtnsInput(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph);
             // debugger;
@@ -332,7 +358,7 @@ numericButtons.forEach(button => {
     }); */
 
     button.addEventListener('click', processInput);
-    button.addEventListener('keydown', processInput);
+    // button.addEventListener('keydown', processInput);
 });
 
 const arithmeticButton = document.querySelectorAll('#arithmeticBtns button');
@@ -345,3 +371,4 @@ arithmeticButton.forEach(button => {
     // button.addEventListener('keydown', processInput);
 });
 window.addEventListener('keydown', processInput);
+// window.removeEventListener('keydown', processInput);
