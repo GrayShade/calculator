@@ -4,26 +4,27 @@ let n2 = '';
 let op = '';
 let result = '';
 
-function getKeyType(keyPressed) {
-    const upperBarKeys = ['c', 'Backspace', 's'];
-    // using spread operator to generate an array of numbers from 0-9:
-    let numericalKeys = [...Array(10).keys()];
-    numericalKeys = numericalKeys.map(String);
-    numericalKeys.push('.');
-    const arithmeticKeys = ['+', '-', '*', '/', '=', '%', 'Enter'];
-
+function handleDecimal(num) {
+    debugger;
     switch (true) {
-        case (upperBarKeys.includes(keyPressed)):
-            return "upperBarKey";
-        // break;
-        case (numericalKeys.includes(keyPressed)):
-            return "numericalKey";
-        // break;
-        case (arithmeticKeys.includes(keyPressed)):
-            return "arithmeticKey";
-        // break;
+        case (Number.isInteger(Number(num))): // if number is a decimal or whole
+
+            if (num.length > 13) { // if result is greater than 12 digits
+                // alert(num);
+                num = Number(num).toExponential(2).toString();
+            }
+            break;
+        default:
+            num = Number(num).toFixed(2).toString();
+
+            if (num.length > 13) { // if result is greater than 12 digits as sign is included too
+                // alert(num);
+                num = Number(num).toExponential(2).toString();
+            }
     }
 
+
+return num;
 }
 
 function changeSign(calScrnLwrParagrph) {
@@ -32,10 +33,7 @@ function changeSign(calScrnLwrParagrph) {
         n1 = -(n1); // n1 converts to number here & from 
         // exponential to non exponential form. So:
         n1 = n1.toString(); // converting to string
-        if (n1.length > 12) {
-            n1 = Number(n1).toExponential().toString(); // to exponential form
-        }
-
+        n1 = handleDecimal(n1);
         calScrnLwrParagrph.textContent = n1;
     }
     else
@@ -44,9 +42,7 @@ function changeSign(calScrnLwrParagrph) {
             n2 = -(n2); // n1 converts to number here & from 
             // exponential to non exponential form. So:
             n2 = n2.toString(); // converting to string
-            if (n2.length > 12) {
-                n2 = Number(n2).toExponential().toString(); // to exponential form
-            }
+            n2 = handleDecimal(n1);
             calScrnLwrParagrph.textContent = n2;
         }
 }
@@ -217,7 +213,7 @@ function operateNumericInput(e, calScrnLwrParagrph) {
             }
             break;
     }
-    
+
 }
 
 function operateRightBtnsInput(e, calScrnUprParagrph, calScrnLwrParagrph) {
@@ -255,19 +251,9 @@ function operateRightBtnsInput(e, calScrnUprParagrph, calScrnLwrParagrph) {
         case (n1 != '' && op != '' && n2 != ''):
             result = operate(n1, n2, op).toString();
 
-            if (Number.isInteger(Number(result))) { // if number is a decimal or whole
+            result = handleDecimal(result);
+            calScrnLwrParagrph.textContent = result;
 
-                if (result.length > 12) { // if result is greater than 12 digits
-                    result = Number(result).toExponential(2).toString();
-                }
-            }
-            else {
-                result = Number(result).toFixed(2).toString();
-
-                if (result.length > 12) { // if result is greater than 12 digits
-                    result = Number(result).toExponential(2).toString();
-                }
-            }
             if (buttonValue != '=' && buttonValue != 'Enter') {
                 // op is now last operator pressed after entering n2:
                 op = buttonValue;
@@ -299,6 +285,28 @@ function handleNumericBtnsInput(e, calScrnLwrParagrph) {
 function handleRightBtnsInput(e, calScrnUprParagrph, calScrnLwrParagrph) {
 
     operateRightBtnsInput(e, calScrnUprParagrph, calScrnLwrParagrph);
+}
+
+function getKeyType(keyPressed) {
+    const upperBarKeys = ['c', 'Backspace', 's'];
+    // using spread operator to generate an array of numbers from 0-9:
+    let numericalKeys = [...Array(10).keys()];
+    numericalKeys = numericalKeys.map(String);
+    numericalKeys.push('.');
+    const arithmeticKeys = ['+', '-', '*', '/', '=', '%', 'Enter'];
+
+    switch (true) {
+        case (upperBarKeys.includes(keyPressed)):
+            return "upperBarKey";
+        // break;
+        case (numericalKeys.includes(keyPressed)):
+            return "numericalKey";
+        // break;
+        case (arithmeticKeys.includes(keyPressed)):
+            return "arithmeticKey";
+        // break;
+    }
+
 }
 
 function processInput(e) {
