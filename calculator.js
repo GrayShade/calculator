@@ -10,23 +10,24 @@ function getKeyType(keyPressed) {
     let numericalKeys = [...Array(10).keys()];
     numericalKeys = numericalKeys.map(String);
     numericalKeys.push('.');
-    debugger;
     const arithmeticKeys = ['+', '-', '*', '/', '=', '%', 'Enter'];
-    if (upperBarKeys.includes(keyPressed)) {
-        return "upperBarKey";
-    } else
-        if (numericalKeys.includes(keyPressed)) {
+
+    switch (true) {
+        case (upperBarKeys.includes(keyPressed)):
+            return "upperBarKey";
+        // break;
+        case (numericalKeys.includes(keyPressed)):
             return "numericalKey";
-        } else
-            if (arithmeticKeys.includes(keyPressed)) {
-                return "arithmeticKey";
-            }
-    // upperBarKeys.map(key => { if (upperBarKeys.includes(key)) return key;});
-    // numericalKeys.map(key => { if (numericalKeys.includes(key)) return key;});
-    // arithmeticBtns.map(key => { if (arithmeticBtns.includes(key)) return key;});
+        // break;
+        case (arithmeticKeys.includes(keyPressed)):
+            return "arithmeticKey";
+        // break;
+    }
+
 }
 
-function changeSign(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph) {
+function changeSign(calScrnLwrParagrph) {
+
     if (n1 != '0' && calScrnLwrParagrph.textContent == n1 && n2 == '') {
         n1 = -(n1); // n1 converts to number here & from 
         // exponential to non exponential form. So:
@@ -50,26 +51,29 @@ function changeSign(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph) {
         }
 }
 
-function delEntry(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph) {
-    debugger;
+function delEntry(calScrnLwrParagrph) {
+
     // if only n1 is entered or after result is calculated:
-    if (n1 != '0' && calScrnLwrParagrph.textContent == n1 && n2 == '') {
-        n1 = n1.slice(0, -1);
-        if (n1 == '') { // as cant afford to remove even zero from 1st number
-            n1 = '0';
-        }
-        calScrnLwrParagrph.textContent = n1;
-    }
-    else
+
+    switch (true) {
+        case (n1 != '0' && calScrnLwrParagrph.textContent == n1 && n2 == ''):
+            n1 = n1.slice(0, -1);
+            if (n1 == '') { // as cant afford to remove even zero from 1st number
+                n1 = '0';
+            }
+            calScrnLwrParagrph.textContent = n1;
+            break;
+
         // while entering n2:
-        if (n2 != '' && calScrnLwrParagrph.textContent == n2 && op != '') {
+        case (n2 != '' && calScrnLwrParagrph.textContent == n2 && op != ''):
             n2 = n2.slice(0, -1);
             calScrnLwrParagrph.textContent = n2;
-        }
-
+            break;
+    }
 }
 
-function allClear(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph) {
+function allClear(calScrnUprParagrph, calScrnLwrParagrph) {
+
     sign = '';
     n1 = '0';
     n2 = '';
@@ -80,225 +84,221 @@ function allClear(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph) {
 }
 
 
-function addition(sign, n1, n2, op, buttonValue) {
+function addition(n1, n2) {
     return Number(n1) + Number(n2);
 }
 
-function subtraction(sign, n1, n2, op, buttonValue) {
+function subtraction(n1, n2) {
     return Number(n1) - Number(n2);
 }
 
-function multiplication(sign, n1, n2, op, buttonValue) {
+function multiplication(n1, n2) {
     return Number(n1) * Number(n2);
 }
 
-function division(sign, n1, n2, op, buttonValue) {
+function division(n1, n2) {
     return Number(n1) / Number(n2);
 }
 
-function modulus(sign, n1, n2, op, buttonValue) {
+function modulus(n1, n2) {
     return Number(n1) % Number(n2);
 }
 
 
 
 // button value here is last operator pressed after entering n2:
-function operate(sign, n1, n2, op, buttonValue) {
-    // debugger;
+function operate(n1, n2, op) {
+
     switch (true) {
         case op == '+':
-            return addition(sign, n1, n2, op, buttonValue);
+            return addition(n1, n2);
         // break; no need to use break here as code is returning on each case
         case op == '-':
-            return subtraction(sign, n1, n2, op, buttonValue);
+            return subtraction(n1, n2);
         // break;
         case op == '*':
-            return multiplication(sign, n1, n2, op, buttonValue);
+            return multiplication(n1, n2);
         // break;
         case op == '/':
-            return division(sign, n1, n2, op, buttonValue);
+            return division(n1, n2);
         // break;
         case op == '%':
-            return modulus(sign, n1, n2, op, buttonValue);
+            return modulus(n1, n2);
         // break;
     }
 
 }
 
-function operateUpperBtnsInput(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph) {
-    debugger;
+function operateUpperBtnsInput(e, calScrnUprParagrph, calScrnLwrParagrph) {
+
     // using ids bwlow not for any specific cause:
     let buttonID = e.target.id.trim();
-    if (buttonID == 'acBtn' || e.key == 'c') {
-        allClear(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph);
-    } else
-        if (buttonID == 'delBtn' || e.key == 'Backspace') {
-            delEntry(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph)
-        } else
-            if (buttonID == 'signBtn' || e.key == 's') {
-                changeSign(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph)
-            }
+    switch (true) {
+        case (buttonID == 'acBtn' || e.key == 'c'):
+            allClear(calScrnUprParagrph, calScrnLwrParagrph);
+            break;
+        case (buttonID == 'delBtn' || e.key == 'Backspace'):
+            delEntry(calScrnLwrParagrph)
+            break;
+        case (buttonID == 'signBtn' || e.key == 's'):
+            changeSign(calScrnLwrParagrph)
+            break;
+    }
 }
 
-function operateNumericInput(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph) {
+function operateNumericInput(e, calScrnLwrParagrph) {
     let buttonValue;
     if (e.type == 'keydown') {
         buttonValue = e.key;
+        // console.log(buttonValue);
     } else {
         buttonValue = e.target.textContent.trim();
     }
-    // debugger;
 
-    if (sign == '' && n1 == '0' && op == '') {
-        n1 = buttonValue;
-        if (calScrnLwrParagrph.textContent == '0') {
-            calScrnLwrParagrph.textContent = n1;
-        } else
-            calScrnLwrParagrph.textContent += n1;
-    } else
-        if (sign != '' && n1 == '0' && op == '') {
+    switch (true) {
+
+        case (sign == '' && n1 == '0' && op == ''):
+
+            n1 = buttonValue;
+            if (calScrnLwrParagrph.textContent == '0') {
+                calScrnLwrParagrph.textContent = n1;
+            } else
+                calScrnLwrParagrph.textContent += n1;
+            break;
+        case (sign != '' && n1 == '0' && op == ''):
+
             if (sign == '-') {
                 buttonValue = '-' + buttonValue;
                 n1 = buttonValue;
             }
             calScrnLwrParagrph.textContent = n1;
-        } else
-            if (sign == '' && n1 != '' && n1 != '0' && op == '') {
-                if (n1.includes('.')) {
+            break;
+        case (sign == '' && n1 != '' && n1 != '0' && op == ''):
+            switch (true) {
+                case (n1.includes('.')):
                     if ((n1.replace('.', '').length < 12) && (buttonValue != '.')) {
                         n1 += buttonValue;
                         calScrnLwrParagrph.textContent = n1;
                     }
-                } else {
-                    if (n1.length < 12) {
-                        n1 += buttonValue;
-                        calScrnLwrParagrph.textContent = n1;
-                    }
-                }
-
-            } else
-                if (sign != '' && n1 != '' && n1 != '0' && op == '') {
+                    break;
+                case (n1.length < 12):
                     n1 += buttonValue;
                     calScrnLwrParagrph.textContent = n1;
+                    break;
+            }
+            break;
+        case (sign != '' && n1 != '' && n1 != '0' && op == ''):
 
-                } else
-                    if (n1 != '' && (op == '=' || op == 'Enter') && n2 == '') { // to cater numbers entered after << = >> sign result shown 
-                        n1 = buttonValue;
-                        op = '';
-                        calScrnLwrParagrph.textContent = n1;
+            n1 += buttonValue;
+            calScrnLwrParagrph.textContent = n1;
+            break;
+        case (n1 != '' && (op == '=' || op == 'Enter') && n2 == ''): // to cater numbers entered after << = >> sign result shown 
+            n1 = buttonValue;
+            op = '';
+            calScrnLwrParagrph.textContent = n1;
+            break;
+        case (n1 != '' && op != '' && n2 == ''):
+
+            n2 += buttonValue;
+            calScrnLwrParagrph.textContent = n2;
+            break;
+        case (n1 != '' && op != '' && n2 != ''):
+            switch (true) {
+                case (n2.includes('.')):
+                    if ((n2.replace('.', '').length < 12) && (buttonValue != '.')) {
+                        n2 += buttonValue;
+                        calScrnLwrParagrph.textContent = n2;
                     }
-
-                    else
-                        if (n1 != '' && op != '' && n2 == '') {
-                            n2 += buttonValue;
-                            calScrnLwrParagrph.textContent = n2;
-                        }
-
-                        else
-                            if (n1 != '' && op != '' && n2 != '') {
-                                if (n2.includes('.')) {
-                                    if ((n2.replace('.', '').length < 12) && (buttonValue != '.')) {
-                                        n2 += buttonValue;
-                                        calScrnLwrParagrph.textContent = n2;
-                                    }
-                                } else {
-                                    if (n2.length < 12) {
-                                        n2 += buttonValue;
-                                        calScrnLwrParagrph.textContent = n2;
-                                    }
-                                }
-
-                            }
-
+                    break;
+                case (n2.length < 12):
+                    n2 += buttonValue;
+                    calScrnLwrParagrph.textContent = n2;
+                    break;
+            }
+            break;
+    }
+    
 }
 
-function operateRightBtnsInput(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph) {
-    // debugger;
+function operateRightBtnsInput(e, calScrnUprParagrph, calScrnLwrParagrph) {
+
     let buttonValue;
     if (e.type == 'keydown') {
         buttonValue = e.key;
     } else {
         buttonValue = e.target.textContent.trim();
     }
-    if (sign == '' && n1 == '') {
-        if (buttonValue == '-') {
-            sign = buttonValue;
-            calScrnLwrParagrph.textContent = buttonValue;
-        }
-    } else
-        if (sign != '' && n1 == '') {
+
+    switch (true) {
+        case (sign == '' && n1 == ''):
+            if (buttonValue == '-') {
+                sign = buttonValue;
+                calScrnLwrParagrph.textContent = buttonValue;
+            }
+            break;
+        case (sign != '' && n1 == ''):
             if (buttonValue == '-') {
                 sign = buttonValue;
                 calScrnLwrParagrph.textContent += buttonValue;
             }
-        } else
-            if (n1 != '' && op == '' && n2 == '' && (buttonValue != '=' && buttonValue != 'Enter')) {
-                op = buttonValue;
-                calScrnUprParagrph.textContent = calScrnLwrParagrph.textContent + op; // does code reach here?
-                // calScrnLwrParagrph.textContent += op;
+            break;
+        case (n1 != '' && op == '' && n2 == '' && (buttonValue != '=' && buttonValue != 'Enter')):
+            op = buttonValue;
+            calScrnUprParagrph.textContent = calScrnLwrParagrph.textContent + op; // does code reach here?
 
-            } else
-                if (n1 != '' && (op == '=' || op == 'Enter') && n2 == '' && (buttonValue != '=' && buttonValue != 'Enter')) { // to cater the operator pressed after equal sign result
-                    op = buttonValue;
-                    calScrnUprParagrph.textContent = calScrnLwrParagrph.textContent + op;
-                    // calScrnLwrParagrph.textContent += op;
+            break;
+        // to cater the operator pressed after equal sign result:
+        case (n1 != '' && (op == '=' || op == 'Enter') && n2 == '' && (buttonValue != '=' && buttonValue != 'Enter')):
+            op = buttonValue;
+            calScrnUprParagrph.textContent = calScrnLwrParagrph.textContent + op;
+            break;
+        case (n1 != '' && op != '' && n2 != ''):
+            result = operate(n1, n2, op).toString();
 
+            if (Number.isInteger(Number(result))) { // if number is a decimal or whole
+
+                if (result.length > 12) { // if result is greater than 12 digits
+                    result = Number(result).toExponential(2).toString();
                 }
-                else
-                    if (n1 != '' && op != '' && n2 != '') {
-                        result = operate(sign, n1, n2, op, buttonValue).toString();
-                        // if (result.toFixed(2).length > 9) { // if result is greater than 9 digits
-                        //     result = Number(result).toExponential(2).toString();
-                        // }
+            }
+            else {
+                result = Number(result).toFixed(2).toString();
 
-                        if (Number.isInteger(Number(result))) { // if number is a decimal or whole
-                            // debugger;
-                            if (result.length > 12) { // if result is greater than 12 digits
-                                result = Number(result).toExponential(2).toString();
-                            }
-                        }
-                        else {
-                            result = Number(result).toFixed(2).toString();
-                            // debugger;
-                            if (result.length > 12) { // if result is greater than 12 digits
-                                result = Number(result).toExponential(2).toString();
-                            }
-                        }
-                        if (buttonValue != '=' && buttonValue != 'Enter') {
-                            // op is now last operator pressed after entering n2:
-                            op = buttonValue;
-                            // calScrnUprParagrph.textContent = Number(result).toFixed(2) + op;
-                            calScrnUprParagrph.textContent = result + op;
+                if (result.length > 12) { // if result is greater than 12 digits
+                    result = Number(result).toExponential(2).toString();
+                }
+            }
+            if (buttonValue != '=' && buttonValue != 'Enter') {
+                // op is now last operator pressed after entering n2:
+                op = buttonValue;
+                calScrnUprParagrph.textContent = result + op;
 
-                        } else {
-                            calScrnUprParagrph.textContent = `${n1} =`;
-                            op = buttonValue;
+            } else {
+                calScrnUprParagrph.textContent = `${n1} =`;
+                op = buttonValue;
 
-                        }
-                        debugger;
-                        n1 = result;
-                        n2 = '';
-                        // calScrnUprParagrph.textContent = result + op;
-                        calScrnLwrParagrph.textContent = result;
+            }
 
-                    }
+            n1 = result;
+            n2 = '';
+            calScrnLwrParagrph.textContent = result;
+            break;
+    }
 
 }
 
-
-function handleUpperBtnsInput(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph) {
-    operateUpperBtnsInput(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph);
+function handleUpperBtnsInput(e, calScrnUprParagrph, calScrnLwrParagrph) {
+    operateUpperBtnsInput(e, calScrnUprParagrph, calScrnLwrParagrph);
 }
 
-function handleNumericBtnsInput(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph) {
-    // displayNumericOperations(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph);
-    operateNumericInput(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph);
+function handleNumericBtnsInput(e, calScrnLwrParagrph) {
+
+    operateNumericInput(e, calScrnLwrParagrph);
 }
 
-function handleRightBtnsInput(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph) {
-    // operate();
-    // displayRightBtnsInput(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph);
-    operateRightBtnsInput(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph);
+function handleRightBtnsInput(e, calScrnUprParagrph, calScrnLwrParagrph) {
+
+    operateRightBtnsInput(e, calScrnUprParagrph, calScrnLwrParagrph);
 }
 
 function processInput(e) {
@@ -307,68 +307,68 @@ function processInput(e) {
     const buttonParent = e.target.parentElement;
     let keyPressed;
     let keyType;
-    debugger;
     if (e.type == 'keydown') {
         keyPressed = e.key;
         keyType = getKeyType(keyPressed);
-        // debugger;
+
+
+        // There was an issue that when for example clear button was clicked at start, focus 
+        // was shifted on that on backend. It caused clear button to be called whenever enter 
+        // was pressed as enter targets focused element. Instead of worked as equal button, enter 
+        // cleared screen each time. So for that issue, we have to remove focus from currently 
+        // focused element. 
+        if (e.keyCode === 13) { // 13 is for enter key
+            // alert(e.target.id);
+            // e.preventDefault();
+
+            // The HTMLElement.blur() method removes keyboard focus from the current element. 
+            // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/blur
+            e.target.blur();
+        }
     }
-    // if
+
     switch (true) {
-        // == && % are assigned arithmeticBtns class in html to be handled as operators:
+        // == && % are assigned arithmeticBtns class in html to be handled as operators.
+        // Each 1st case from case pair is for mouse & second is for keyboard key handling.
         case (buttonParent.id == 'upperBarBtns' && (e.target.classList[0] != 'arithmeticBtns') && e.type == 'click'):
         case keyType == 'upperBarKey':
-            // debugger;
-            handleUpperBtnsInput(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph);
+            handleUpperBtnsInput(e, calScrnUprParagrph, calScrnLwrParagrph);
             break;
+
         case buttonParent.classList.contains('numericRow') && (e.target.classList[0] != 'arithmeticBtns' && e.type == 'click'):
         case keyType == 'numericalKey':
-            handleNumericBtnsInput(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph);
-            // debugger;
+            handleNumericBtnsInput(e, calScrnLwrParagrph);
             break;
 
         case (buttonParent.id == 'arithmeticBtns' || (e.target.classList[0] == 'arithmeticBtns') && e.type == 'click'):
         case keyType == 'arithmeticKey':
-            handleRightBtnsInput(e, buttonParent, calScrnUprParagrph, calScrnLwrParagrph);
-            // debugger;
+            handleRightBtnsInput(e, calScrnUprParagrph, calScrnLwrParagrph);
             break;
     }
 
 }
 
-
 const upperBarButtons = document.querySelectorAll('#upperBarBtns button');
 upperBarButtons.forEach(button => {
-    /* button.addEventListener('click', e => {
-        const buttonParent = e.target.parentElement;
-        // debugger;
-        processInput(e, buttonParent);
-    }); */
+
 
     button.addEventListener('click', processInput); // addeventListener adds event to function automatically
-    // button.addEventListener('keydown', processInput);
+
 });
 
 const numericButtons = document.querySelectorAll('.numericRow button');
 numericButtons.forEach(button => {
-    /* button.addEventListener('click', e => {
-        const buttonParent = e.target.parentElement;
-        // debugger;
-        processInput(e, buttonParent);
-    }); */
+
 
     button.addEventListener('click', processInput);
-    // button.addEventListener('keydown', processInput);
+
 });
 
 const arithmeticButton = document.querySelectorAll('#arithmeticBtns button');
 arithmeticButton.forEach(button => {
-    /* button.addEventListener('click', e => {
-        const buttonParent = e.target.parentElement;
-        processInput(e, buttonParent);
-    }); */
+
     button.addEventListener('click', processInput);
-    // button.addEventListener('keydown', processInput);
+
 });
-window.addEventListener('keydown', processInput);
-// window.removeEventListener('keydown', processInput);
+// to handle keyboard keys:
+document.addEventListener('keydown', processInput);
