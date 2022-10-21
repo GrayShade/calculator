@@ -5,7 +5,6 @@ let op = '';
 let result = '';
 
 function handleDecimal(num) {
-    debugger;
     switch (true) {
         case (Number.isInteger(Number(num))): // if number is a decimal or whole
 
@@ -24,27 +23,29 @@ function handleDecimal(num) {
     }
 
 
-return num;
+    return num;
 }
 
 function changeSign(calScrnLwrParagrph) {
 
-    if (n1 != '0' && calScrnLwrParagrph.textContent == n1 && n2 == '') {
-        n1 = -(n1); // n1 converts to number here & from 
-        // exponential to non exponential form. So:
-        n1 = n1.toString(); // converting to string
-        n1 = handleDecimal(n1);
-        calScrnLwrParagrph.textContent = n1;
-    }
-    else
-        // while entering n2:
-        if (n2 != '' && calScrnLwrParagrph.textContent == n2 && op != '') {
+    switch (true) {
+
+        case (n1 != '0' && calScrnLwrParagrph.textContent == n1 && n2 == ''):
+            n1 = -(n1); // n1 converts to number here & from 
+            // exponential to non exponential form. So:
+            n1 = n1.toString(); // converting to string
+            n1 = handleDecimal(n1);
+            calScrnLwrParagrph.textContent = n1;
+            break;
+
+        case (n2 != '' && calScrnLwrParagrph.textContent == n2 && op != ''):
             n2 = -(n2); // n1 converts to number here & from 
             // exponential to non exponential form. So:
             n2 = n2.toString(); // converting to string
             n2 = handleDecimal(n1);
             calScrnLwrParagrph.textContent = n2;
-        }
+            break;
+    }
 }
 
 function delEntry(calScrnLwrParagrph) {
@@ -240,13 +241,14 @@ function operateRightBtnsInput(e, calScrnUprParagrph, calScrnLwrParagrph) {
             break;
         case (n1 != '' && op == '' && n2 == '' && (buttonValue != '=' && buttonValue != 'Enter')):
             op = buttonValue;
-            calScrnUprParagrph.textContent = calScrnLwrParagrph.textContent + op; // does code reach here?
+            calScrnUprParagrph.textContent = calScrnLwrParagrph.textContent + " " + op; // does code reach here?
 
             break;
         // to cater the operator pressed after equal sign result:
         case (n1 != '' && (op == '=' || op == 'Enter') && n2 == '' && (buttonValue != '=' && buttonValue != 'Enter')):
             op = buttonValue;
-            calScrnUprParagrph.textContent = calScrnLwrParagrph.textContent + op;
+            calScrnUprParagrph.textContent = calScrnLwrParagrph.textContent + " " + op;
+            // calScrnUprParagrph.textContent = `${n1} ${buttonValue} ${n2} ${op}`;
             break;
         case (n1 != '' && op != '' && n2 != ''):
             result = operate(n1, n2, op).toString();
@@ -257,17 +259,19 @@ function operateRightBtnsInput(e, calScrnUprParagrph, calScrnLwrParagrph) {
             if (buttonValue != '=' && buttonValue != 'Enter') {
                 // op is now last operator pressed after entering n2:
                 op = buttonValue;
-                calScrnUprParagrph.textContent = result + op;
+                calScrnUprParagrph.textContent = result + " " + op;
 
             } else {
-                calScrnUprParagrph.textContent = `${n1} =`;
+                // calScrnUprParagrph.textContent = `${n1} =`;
+                calScrnUprParagrph.textContent = `${n1} ${op} ${n2} =`;
                 op = buttonValue;
 
             }
 
             n1 = result;
             n2 = '';
-            calScrnLwrParagrph.textContent = result;
+            result = '';
+            calScrnLwrParagrph.textContent = n1;
             break;
     }
 

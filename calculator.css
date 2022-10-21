@@ -1,7 +1,7 @@
 body {
     height: 100vh;
     margin: 0px;
-    overflow: hidden;
+    overflow-y: scroll;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -26,8 +26,49 @@ body {
     color: #FFFFFF;
     height: 10%;
     width: 100%;
+    /* If want a flicker animation, enable below line &
+    then @keyframes paragraph below. */
+    /* animation: flicker 1.5s infinite alternate; */
+    /* https://css-tricks.com/how-to-create-neon-text-with-css/ */
+    
+    /* color: #fff; */
+
+    text-shadow:
+    0 0 4px #fff,
+    0 0 1px #fff
+    /* text-shadow:
+      0 0 7px #fff,
+      0 0 10px #fff,
+      0 0 21px #fff,
+      0 0 42px #0fa,
+      0 0 82px #0fa,
+      0 0 92px #0fa,
+      0 0 102px #0fa,
+      0 0 151px #0fa; */
 
 }
+
+/* Flickering animation */
+/* @keyframes flicker {
+    
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+  
+        text-shadow:
+        0 0 4px #fff,
+        0 0 11px #fff,
+        0 0 19px #fff,
+        0 0 40px #0fa,
+        0 0 80px #0fa,
+        0 0 90px #0fa,
+        0 0 100px #0fa,
+        0 0 150px #0fa;
+    
+    }
+    
+    20%, 24%, 55% {        
+        text-shadow: none;
+    }
+} */
 
 #header span {
     font-family: system-ui;
@@ -42,7 +83,7 @@ body {
     border: 2px solid black;
     margin: 1% 0% 5%;
     width: 20%;
-    min-width: 20%;
+    min-width: 300px;
     flex-grow: 1;
     padding: 10px;
     border-radius: 10px 10px 10px 10px;
@@ -58,8 +99,9 @@ body {
 
 #calScreen {
     padding: 3%;
+    /* flex-grow: 1; */
     background-color: #585d58;
-    height: 20%;
+    min-height: 20%;
     margin-bottom: 1%;
     box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 16px;
     display: flex;
@@ -67,40 +109,36 @@ body {
 }
 
 #calScreenUpper {
-    display: flex;
-    /* margin: 0px; */
+
     height: 30%;
-    /* align-self: flex-end; */
-    align-items: center;
-    justify-content: flex-end;
+    flex-grow: 1;
+
 }
 
 #calScreenUpperPara {
+    text-align: end;
     font-size: x-large;
     margin: 0px;
 }
 
-#calScreenLower {
-    flex-grow: 1;
-    align-self: flex-end;
-    font-size: 250%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-
-}
-
 #calScreenLowerPara {
-    font-size: 120%;
+    text-align: end;
+    font-size: 40px;
     margin: 0px;
 }
 
 #calScreenUpper p {
     color: #FFDC00;
+    text-shadow:
+    0 0 3px #FFDC00,
+    0 0 1px #fff
 }
 
 #calScreenLower p {
     color: #01FF70;
+    text-shadow:
+    0 0 3px #01FF70,
+    0 0 1px #fff
 }
 
 #calButtons {
@@ -116,8 +154,49 @@ body {
 #upperBarBtns button,
 .numericRow button,
 #arithmeticBtns button {
+    font-family: serif;
+    font-style: italic;
+    flex-grow: 1;
+    margin: 1px;
+    /* border: none; */
+    color: white;
+
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+
+    border-radius: 10px;
+    min-width: 0;
+
     font-size: x-large;
     box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 16px;
+}
+
+#upperBarBtns button:active,
+.numericRow button:active,
+#arithmeticBtns button:active {
+    /* background-color: #04AA6D;
+    /* box-shadow: 0 5px #666; */
+    transform: translateY(3px);
+    /* filter: brightness(80%); */
+}
+
+#upperBarBtns button:hover,
+.numericRow button:hover,
+#arithmeticBtns button:hover {
+    /* background-color: #04AA6D; */
+    filter: brightness(80%);
+    color: #fff;
+    text-shadow:
+      0 0 7px #fff,
+      0 0 10px #fff,
+      0 0 21px #fff,
+      0 0 42px #0fa,
+      0 0 82px #0fa,
+      0 0 92px #0fa,
+      0 0 102px #0fa,
+      0 0 151px #0fa;
 }
 
 #upperBarBtns {
@@ -130,7 +209,6 @@ body {
     box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 16px;
 
 }
-
 
 #acBtn {
     background-color: #FF4136;
@@ -151,9 +229,7 @@ body {
 
     height: 85%;
     margin: 2px 2px 3px 2px;
-
     display: flex;
-
     border-radius: 10px 10px 10px 10px;
     box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 16px;
 }
@@ -177,7 +253,7 @@ body {
 }
 
 #equalBtn {
-    background-color: #3D9970;
+    background-color: #04AA6D;
 }
 
 .numericRow {
@@ -201,23 +277,5 @@ body {
     background-color: #FF851B;
     margin: 3%;
     font-size: xx-large;
-
-}
-
-button {
-    font-family: serif;
-    font-style: italic;
-    flex-grow: 1;
-    margin: 1px;
-    /* border: none; */
-    color: white;
-
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-
-    border-radius: 10px;
-    min-width: 0;
 
 }
