@@ -101,10 +101,9 @@ function modulus(n1, n2) {
     return Number(n1) % Number(n2);
 }
 
-
 // button value here is last operator pressed after entering n2:
 function operate(n1, n2, op) {
-    debugger;
+
     switch (true) {
 
         case op == '+':
@@ -158,8 +157,14 @@ function operateNumericInput(e, calScrnLwrParagrph) {
     switch (true) {
 
         case (sign == '' && n1 == '0' && op == ''):
-
             n1 = buttonValue;
+            
+            // below if adds 0 before decimal(.) sign, if
+            // first char entered is << . >> sign:
+            if (calScrnLwrParagrph.textContent == '0' && n1 == '.') {
+                n1 = `0${n1}`;
+                calScrnLwrParagrph.textContent = n1;
+            } else
             if (calScrnLwrParagrph.textContent == '0') {
                 calScrnLwrParagrph.textContent = n1;
             } else
