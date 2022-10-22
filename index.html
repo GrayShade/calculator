@@ -12,56 +12,71 @@
 
 <body>
     <div id="header"><span>Calculator App</span></div>
-    <div id="container">
-        <div id="calScreen">
-            <div id="calScreenUpper">
-                <p id = "calScreenUpperPara"></p>
-            </div>
-            <div id="calScreenLower">
-                <p id = "calScreenLowerPara">0</p>
-            </div>
+    <div id="main">
+        <div id="leftContainer">
+            <p>- keyboard Shortcut:</p>
+            <p>- All keys are bind to respective keys</p>
+            <p>- Some button keys are:</p>
+            <p>c for AC</p>
+            <p>Backspace for &#8592;</p>
+            <p>s for +/-</p>
         </div>
-        <div id="calButtons">
-            <div id="upperBarBtns">
-                <button class="upperBarBtn" id="acBtn">AC</button>
-                <button class="upperBarBtn" id="delBtn">&#8592;</button>
-                <button class="arithmeticBtns" id="modulusBtn">%</button>
-                <button class="upperBarBtn" id="signBtn">+/-</button>
-            </div>
-            <div id="lowerBarBtns">
-                <div id="numericalBtns">
-                    <div class="numericRow" id="numericRow1">
-                        <button>7</button>
-                        <button>8</button>
-                        <button>9</button>
-                    </div>
-                    <div class="numericRow" id="numericRow2">
-                        <button>4</button>
-                        <button>5</button>
-                        <button>6</button>
-                    </div>
-                    <div class="numericRow" id="numericRow3">
-                        <button>1</button>
-                        <button>2</button>
-                        <button>3</button>
-                    </div>
-                    <div class="numericRow" id="numericRow4">
-                        <button>0</button>
-                        <!-- spaces for button equality: -->
-                        <button>&nbsp.&nbsp</button> 
-                        <button class="arithmeticBtns" id="equalBtn">=</button>
-                    </div>
+        <div id="midContainer">
+            <div id="calScreen">
+                <div id="calScreenUpper">
+                    <p id="calScreenUpperPara"></p>
                 </div>
-                <div id="arithmeticBtns">
-                    <button class="arithmeticBtns">+</button>
-                    <button class="arithmeticBtns">-</button>
-                    <button class="arithmeticBtns">*</button>
-                    <button class="arithmeticBtns">/</button>
+                <div id="calScreenLower">
+                    <p id="calScreenLowerPara">0</p>
                 </div>
             </div>
+            <div id="calButtons">
+                <div id="upperBarBtns">
+                    <button class="upperBarBtn" id="acBtn">AC</button>
+                    <button class="upperBarBtn" id="delBtn">&#8592;</button>
+                    <button class="arithmeticBtns" id="modulusBtn">%</button>
+                    <button class="upperBarBtn" id="signBtn">+/-</button>
+                </div>
+                <div id="lowerBarBtns">
+                    <div id="numericalBtns">
+                        <div class="numericRow" id="numericRow1">
+                            <button>7</button>
+                            <button>8</button>
+                            <button>9</button>
+                        </div>
+                        <div class="numericRow" id="numericRow2">
+                            <button>4</button>
+                            <button>5</button>
+                            <button>6</button>
+                        </div>
+                        <div class="numericRow" id="numericRow3">
+                            <button>1</button>
+                            <button>2</button>
+                            <button>3</button>
+                        </div>
+                        <div class="numericRow" id="numericRow4">
+                            <button>0</button>
+                            <!-- spaces for button equality: -->
+                            <button>&nbsp.&nbsp</button>
+                            <button class="arithmeticBtns" id="equalBtn">=</button>
+                        </div>
+                    </div>
+                    <div id="arithmeticBtns">
+                        <button class="arithmeticBtns">+</button>
+                        <button class="arithmeticBtns">-</button>
+                        <button class="arithmeticBtns">*</button>
+                        <button class="arithmeticBtns">/</button>
+                    </div>
+                </div>
 
+            </div>
         </div>
+        <!-- Blow container was just for balancing so 
+            that calculator can be brought in middle 
+            using each container on left & right -->
+        <div id="rightContainer"></div>
     </div>
+
     <div id="footer"></div>
 </body>
 

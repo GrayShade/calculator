@@ -26,49 +26,12 @@ body {
     color: #FFFFFF;
     height: 10%;
     width: 100%;
-    /* If want a flicker animation, enable below line &
-    then @keyframes paragraph below. */
-    /* animation: flicker 1.5s infinite alternate; */
-    /* https://css-tricks.com/how-to-create-neon-text-with-css/ */
-    
-    /* color: #fff; */
-
     text-shadow:
-    0 0 4px #fff,
-    0 0 1px #fff
-    /* text-shadow:
-      0 0 7px #fff,
-      0 0 10px #fff,
-      0 0 21px #fff,
-      0 0 42px #0fa,
-      0 0 82px #0fa,
-      0 0 92px #0fa,
-      0 0 102px #0fa,
-      0 0 151px #0fa; */
-
-}
-
-/* Flickering animation */
-/* @keyframes flicker {
-    
-    0%, 18%, 22%, 25%, 53%, 57%, 100% {
-  
-        text-shadow:
         0 0 4px #fff,
-        0 0 11px #fff,
-        0 0 19px #fff,
-        0 0 40px #0fa,
-        0 0 80px #0fa,
-        0 0 90px #0fa,
-        0 0 100px #0fa,
-        0 0 150px #0fa;
-    
-    }
-    
-    20%, 24%, 55% {        
-        text-shadow: none;
-    }
-} */
+        0 0 1px #fff
+        /* If want a flicker animation:
+        /* https://css-tricks.com/how-to-create-neon-text-with-css/ */
+}
 
 #header span {
     font-family: system-ui;
@@ -76,30 +39,54 @@ body {
     font-size: 40px;
 }
 
-#container {
-    background-color: #f5f5f5;
+#main {
     display: flex;
-    flex-direction: column;
-    border: 2px solid black;
-    margin: 1% 0% 5%;
+    height: 75%;
+    min-height: 350px;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#leftContainer {
     width: 20%;
-    min-width: 300px;
-    flex-grow: 1;
-    padding: 10px;
+}
+
+#leftContainer p {
+    padding-left: 5px;
+    color: #FFFFFF;
+    font-size: large;
+    text-shadow:
+        0 0 4px #fff,
+        0 0 1px #fff
+}
+
+#midContainer,
+#upperBarBtns,
+#lowerBarBtns,
+#numericalBtns,
+#arithmeticBtns,
+#calButtons {
     border-radius: 10px 10px 10px 10px;
     box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 16px;
 }
 
-#footer {
-
-    height: 5%;
-    width: 100%;
-
+#midContainer {
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    min-width: 300px;
+    padding: 10px;
 }
+
+#rightContainer {
+    width: 20%;
+    min-width: 0px;
+}
+
 
 #calScreen {
     padding: 3%;
-    /* flex-grow: 1; */
     background-color: #585d58;
     min-height: 20%;
     margin-bottom: 1%;
@@ -130,25 +117,22 @@ body {
 #calScreenUpper p {
     color: #FFDC00;
     text-shadow:
-    0 0 3px #FFDC00,
-    0 0 1px #fff
+        0 0 3px #FFDC00,
+        0 0 1px #fff
 }
 
 #calScreenLower p {
     color: #01FF70;
     text-shadow:
-    0 0 3px #01FF70,
-    0 0 1px #fff
+        0 0 3px #01FF70,
+        0 0 1px #fff
 }
 
 #calButtons {
     display: flex;
     flex-direction: column;
     border: 1px solid black;
-    /* height: 15%; */
     flex-grow: 1;
-    border-radius: 10px 10px 10px 10px;
-    box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 16px;
 }
 
 #upperBarBtns button,
@@ -158,7 +142,6 @@ body {
     font-style: italic;
     flex-grow: 1;
     margin: 1px;
-    /* border: none; */
     color: white;
 
     text-align: center;
@@ -176,27 +159,23 @@ body {
 #upperBarBtns button:active,
 .numericRow button:active,
 #arithmeticBtns button:active {
-    /* background-color: #04AA6D;
-    /* box-shadow: 0 5px #666; */
     transform: translateY(3px);
-    /* filter: brightness(80%); */
 }
 
 #upperBarBtns button:hover,
 .numericRow button:hover,
 #arithmeticBtns button:hover {
-    /* background-color: #04AA6D; */
     filter: brightness(80%);
     color: #fff;
     text-shadow:
-      0 0 7px #fff,
-      0 0 10px #fff,
-      0 0 21px #fff,
-      0 0 42px #0fa,
-      0 0 82px #0fa,
-      0 0 92px #0fa,
-      0 0 102px #0fa,
-      0 0 151px #0fa;
+        0 0 7px #fff,
+        0 0 10px #fff,
+        0 0 21px #fff,
+        0 0 42px #0fa,
+        0 0 82px #0fa,
+        0 0 92px #0fa,
+        0 0 102px #0fa,
+        0 0 151px #0fa;
 }
 
 #upperBarBtns {
@@ -205,9 +184,6 @@ body {
     height: 20%;
     margin: 1px;
     margin-bottom: 1%;
-    border-radius: 10px 10px 10px 10px;
-    box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 16px;
-
 }
 
 #acBtn {
@@ -230,8 +206,7 @@ body {
     height: 85%;
     margin: 2px 2px 3px 2px;
     display: flex;
-    border-radius: 10px 10px 10px 10px;
-    box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 16px;
+
 }
 
 
@@ -240,11 +215,7 @@ body {
     display: flex;
     flex-direction: column;
     border: 1px solid black;
-
     flex-grow: 1;
-    border-radius: 10px 10px 10px 10px;
-    box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 16px;
-
 }
 
 .numericRow button {
@@ -259,7 +230,6 @@ body {
 .numericRow {
     display: flex;
     justify-content: space-evenly;
-
     height: 25%;
 }
 
@@ -269,8 +239,6 @@ body {
     width: 20%;
     border: 1px solid black;
     margin: 1%;
-    border-radius: 10px 10px 10px 10px;
-    box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 16px;
 }
 
 #arithmeticBtns button {
@@ -278,4 +246,9 @@ body {
     margin: 3%;
     font-size: xx-large;
 
+}
+
+#footer {
+    height: 5%;
+    width: 100%;
 }
