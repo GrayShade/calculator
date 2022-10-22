@@ -101,6 +101,7 @@ function modulus(n1, n2) {
     return Number(n1) % Number(n2);
 }
 
+
 // button value here is last operator pressed after entering n2:
 function operate(n1, n2, op) {
     debugger;
@@ -250,8 +251,8 @@ function operateRightBtnsInput(e, calScrnUprParagrph, calScrnLwrParagrph) {
         case (n1 != '' && (op == '=' || op == 'Enter') && n2 == '' && (buttonValue != '=' && buttonValue != 'Enter')):
             op = buttonValue;
             calScrnUprParagrph.textContent = calScrnLwrParagrph.textContent + " " + op;
-            // calScrnUprParagrph.textContent = `${n1} ${buttonValue} ${n2} ${op}`;
             break;
+            
         case (n1 != '' && op != '' && n2 != ''):
             result = operate(n1, n2, op).toString();
 
