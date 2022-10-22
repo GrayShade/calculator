@@ -158,17 +158,16 @@ function operateNumericInput(e, calScrnLwrParagrph) {
 
         case (sign == '' && n1 == '0' && op == ''):
             n1 = buttonValue;
-            
             // below if adds 0 before decimal(.) sign, if
             // first char entered is << . >> sign:
             if (calScrnLwrParagrph.textContent == '0' && n1 == '.') {
                 n1 = `0${n1}`;
                 calScrnLwrParagrph.textContent = n1;
             } else
-            if (calScrnLwrParagrph.textContent == '0') {
-                calScrnLwrParagrph.textContent = n1;
-            } else
-                calScrnLwrParagrph.textContent += n1;
+                if (calScrnLwrParagrph.textContent == '0') {
+                    calScrnLwrParagrph.textContent = n1;
+                } else
+                    calScrnLwrParagrph.textContent += n1;
             break;
         case (sign != '' && n1 == '0' && op == ''):
 
@@ -198,14 +197,28 @@ function operateNumericInput(e, calScrnLwrParagrph) {
             calScrnLwrParagrph.textContent = n1;
             break;
         case (n1 != '' && (op == '=' || op == 'Enter') && n2 == ''): // to cater numbers entered after << = >> sign result shown 
-            n1 = buttonValue;
-            op = '';
-            calScrnLwrParagrph.textContent = n1;
+            // below if adds 0 before decimal(.) sign, if
+            // first char entered is << . >> sign:
+            if (buttonValue == '.') {
+                n1 = `0${buttonValue}`;
+                op = '';
+                calScrnLwrParagrph.textContent = n1;
+            } else {
+                n1 = buttonValue;
+                op = '';
+                calScrnLwrParagrph.textContent = n1;
+            }
             break;
         case (n1 != '' && op != '' && n2 == ''):
-
-            n2 += buttonValue;
-            calScrnLwrParagrph.textContent = n2;
+            // below if adds 0 before decimal(.) sign, if
+            // first char entered is << . >> sign:
+            if (buttonValue == '.') {
+                n2 = `0${buttonValue}`;
+                calScrnLwrParagrph.textContent = n2;
+            } else {
+                n2 += buttonValue;
+                calScrnLwrParagrph.textContent = n2;
+            }
             break;
         case (n1 != '' && op != '' && n2 != ''):
             switch (true) {
@@ -226,7 +239,6 @@ function operateNumericInput(e, calScrnLwrParagrph) {
 }
 
 function operateRightBtnsInput(e, calScrnUprParagrph, calScrnLwrParagrph) {
-
     let buttonValue;
     if (e.type == 'keydown') {
         buttonValue = e.key;
@@ -257,7 +269,7 @@ function operateRightBtnsInput(e, calScrnUprParagrph, calScrnLwrParagrph) {
             op = buttonValue;
             calScrnUprParagrph.textContent = calScrnLwrParagrph.textContent + " " + op;
             break;
-            
+
         case (n1 != '' && op != '' && n2 != ''):
             result = operate(n1, n2, op).toString();
 
