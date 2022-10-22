@@ -21,8 +21,6 @@ function handleDecimal(num) {
                 num = Number(num).toExponential(2).toString();
             }
     }
-
-
     return num;
 }
 
@@ -241,7 +239,11 @@ function operateNumericInput(e, calScrnLwrParagrph) {
 function operateRightBtnsInput(e, calScrnUprParagrph, calScrnLwrParagrph) {
     let buttonValue;
     if (e.type == 'keydown') {
-        buttonValue = e.key;
+        if (e.key == '*')
+            buttonValue = '×';
+        else
+            buttonValue = e.key;
+
     } else {
         buttonValue = e.target.textContent.trim();
     }
@@ -297,20 +299,6 @@ function operateRightBtnsInput(e, calScrnUprParagrph, calScrnLwrParagrph) {
 
 }
 
-function handleUpperBtnsInput(e, calScrnUprParagrph, calScrnLwrParagrph) {
-    operateUpperBtnsInput(e, calScrnUprParagrph, calScrnLwrParagrph);
-}
-
-function handleNumericBtnsInput(e, calScrnLwrParagrph) {
-
-    operateNumericInput(e, calScrnLwrParagrph);
-}
-
-function handleRightBtnsInput(e, calScrnUprParagrph, calScrnLwrParagrph) {
-
-    operateRightBtnsInput(e, calScrnUprParagrph, calScrnLwrParagrph);
-}
-
 function getKeyType(keyPressed) {
     const upperBarKeys = ['c', 'Backspace', 's'];
     // using spread operator to generate an array of numbers from 0-9:
@@ -339,10 +327,10 @@ function processInput(e) {
     const buttonParent = e.target.parentElement;
     let keyPressed;
     let keyType;
+
     if (e.type == 'keydown') {
         keyPressed = e.key;
         keyType = getKeyType(keyPressed);
-
 
         // There was an issue that when for example clear button was clicked at start, focus 
         // was shifted on that on backend. It caused clear button to be called whenever enter 
@@ -364,17 +352,17 @@ function processInput(e) {
         // Each 1st case from case pair is for mouse & second is for keyboard key handling.
         case (buttonParent.id == 'upperBarBtns' && (e.target.classList[0] != 'arithmeticBtns') && e.type == 'click'):
         case keyType == 'upperBarKey':
-            handleUpperBtnsInput(e, calScrnUprParagrph, calScrnLwrParagrph);
+            operateUpperBtnsInput(e, calScrnUprParagrph, calScrnLwrParagrph);
             break;
 
         case buttonParent.classList.contains('numericRow') && (e.target.classList[0] != 'arithmeticBtns' && e.type == 'click'):
         case keyType == 'numericalKey':
-            handleNumericBtnsInput(e, calScrnLwrParagrph);
+            operateNumericInput(e, calScrnLwrParagrph);
             break;
 
         case (buttonParent.id == 'arithmeticBtns' || (e.target.classList[0] == 'arithmeticBtns') && e.type == 'click'):
         case keyType == 'arithmeticKey':
-            handleRightBtnsInput(e, calScrnUprParagrph, calScrnLwrParagrph);
+            operateRightBtnsInput(e, calScrnUprParagrph, calScrnLwrParagrph);
             break;
     }
 
