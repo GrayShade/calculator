@@ -101,19 +101,21 @@ function modulus(n1, n2) {
     return Number(n1) % Number(n2);
 }
 
-
-
 // button value here is last operator pressed after entering n2:
 function operate(n1, n2, op) {
-
+    debugger;
     switch (true) {
+
         case op == '+':
             return addition(n1, n2);
         // break; no need to use break here as code is returning on each case
         case op == '-':
             return subtraction(n1, n2);
         // break;
-        case op == '*':
+
+        // if operator is a multiplication symbol or html Unicode character in 
+        // named entity form:
+        case op == '*' || op == '×':
             return multiplication(n1, n2);
         // break;
         case op == '/':
