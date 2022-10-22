@@ -71,7 +71,7 @@ body {
 }
 
 #midContainer {
-    background-color: #f5f5f5;
+    background-color: #f0f8ff;
     display: flex;
     flex-direction: column;
     border: 2px solid black;
