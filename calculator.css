@@ -41,8 +41,8 @@ body {
 
 #main {
     display: flex;
-    height: 75%;
-    min-height: 350px;
+    height: 71%;
+    min-height: 400px;
     justify-content: space-between;
     width: 100%;
 }
@@ -75,6 +75,7 @@ body {
     display: flex;
     flex-direction: column;
     border: 2px solid black;
+    width: 20%;
     min-width: 300px;
     padding: 10px;
 }
@@ -88,7 +89,7 @@ body {
 #calScreen {
     padding: 3%;
     background-color: #585d58;
-    min-height: 20%;
+    min-height: 22%;
     margin-bottom: 1%;
     box-shadow: rgba(0, 0, 0, 0.2) 2px 4px 16px;
     display: flex;
@@ -208,8 +209,6 @@ body {
     display: flex;
 
 }
-
-
 
 #numericalBtns {
     display: flex;
