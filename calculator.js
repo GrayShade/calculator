@@ -14,11 +14,14 @@ function handleDecimal(num) {
             }
             break;
         default:
-            num = Number(num).toFixed(2).toString();
+            num = Number(num).toString();
 
             if (num.length > 13) { // if result is greater than 12 digits as sign is included too
                 // alert(num);
-                num = Number(num).toExponential(2).toString();
+                num = Number(num).toFixed(2).toString();
+                if (num.length > 13) {
+                    num = Number(num).toExponential(2).toString();
+                }
             }
     }
     return num;
